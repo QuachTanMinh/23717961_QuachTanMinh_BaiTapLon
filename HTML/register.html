@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Đăng ký</title>
+    <link rel="stylesheet" href="../CSS/auth.css">
+</head>
+<script>
+    document.querySelector('form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        if (username && password) {
+            // Trong thực tế nên lưu vào cơ sở dữ liệu hoặc ít nhất là localStorage tạm
+            localStorage.setItem('registeredUser', JSON.stringify({ username, password }));
+            alert('Đăng ký thành công! Vui lòng đăng nhập.');
+            window.location.href = 'login.html';
+        } else {
+            alert('Vui lòng điền đầy đủ thông tin!');
+        }
+    });
+</script>
+<script>
+    const loggedInUser = localStorage.getItem('loggedInUser');
+    if (loggedInUser) {
+        // Nếu đã đăng nhập, chuyển về trang chủ
+        window.location.href = "TrangChu.html"; // hoặc đường dẫn tương đối đúng với thư mục của bạn
+    }
+</script>
+
+<body>
+    <div class="auth-container">
+        <h2>Đăng ký</h2>
+        <form id="register-form">
+            <input type="text" id="username" placeholder="Tên đăng nhập" required>
+            <input type="password" id="password" placeholder="Mật khẩu" required>
+            <button type="submit">Đăng ký</button>
+        </form>
+        <p>Đã có tài khoản? <a href="login.html">Đăng nhập</a></p>
+    </div>
+    <script src="/JS/auth.js"></script>
+</body>
+
+</html>
