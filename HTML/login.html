@@ -1,44 +1,53 @@
 <!DOCTYPE html>
 <html lang="vi">
-
 <head>
-    <meta charset="UTF-8">
-    <title>Đăng nhập</title>
-    <link rel="stylesheet" href="/CSS/auth.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Đăng nhập - MQ Medical</title>
+  <link rel="stylesheet" href="/CSS/auth.css">
 </head>
-<script>
-    document.querySelector('form').addEventListener('submit', function(e) {
-        e.preventDefault();
-        const username = document.getElementById('username').value;
-        // Cần có xác thực thật sự ở đây
-        if (username) {
-            localStorage.setItem('loggedInUser', username);
-            alert('Đăng nhập thành công!');
-            window.location.href = 'TrangChu.html'; // Quay lại trang chính
-        } else {
-            alert('Vui lòng nhập tên đăng nhập!');
-        }
-    });
-</script>
-<script>
-    const loggedInUser = localStorage.getItem('loggedInUser');
-    if (loggedInUser) {
-        // Nếu đã đăng nhập, chuyển về trang chủ
-        window.location.href = "/HTML/TrangChu.html"; // hoặc đường dẫn tương đối đúng với thư mục của bạn
-    }
-</script>
-
 <body>
-    <div class="auth-container">
-        <h2>Đăng nhập</h2>
-        <form id="login-form">
-            <input type="text" id="login-username" placeholder="Tên đăng nhập" required>
-            <input type="password" id="login-password" placeholder="Mật khẩu" required>
-            <button type="submit">Đăng nhập</button>
-        </form>
-        <p>Chưa có tài khoản? <a href="register.html">Đăng ký</a></p>
-    </div>
-    <script src="/JS/auth.js"></script>
-</body>
+  <div class="auth-container">
+    <h2>Đăng nhập</h2>
+    <form id="login-form">
+      <input type="text" id="login-username" placeholder="Tên đăng nhập" required>
+      <input type="password" id="login-password" placeholder="Mật khẩu" required>
+      <button type="submit">Đăng nhập</button>
+    </form>
+    <p>Chưa có tài khoản? <a href="register.html">Đăng ký</a></p>
+  </div>
 
+  <script>
+    // Nếu đã đăng nhập thì chuyển về Trang Chủ
+    if (localStorage.getItem('loggedInUser')) {
+      window.location.href = 'TrangChu.html';
+    }
+
+    document.getElementById('login-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const username = document.getElementById('login-username').value.trim();
+      const password = document.getElementById('login-password').value;
+
+      // Lấy danh sách user đã đăng ký
+      const registered = JSON.parse(localStorage.getItem('registeredUsers') || '[]');
+
+      // Tìm user với cả username và password khớp
+      const user = registered.find(u => u.username === username);
+
+      if (!user) {
+        return alert('Tên đăng nhập không tồn tại. Vui lòng kiểm tra lại hoặc đăng ký.');
+      }
+
+      if (user.password !== password) {
+        return alert('Mật khẩu không đúng. Vui lòng thử lại.');
+      }
+
+      // Đăng nhập thành công
+      localStorage.setItem('loggedInUser', username);
+      alert('Đăng nhập thành công!');
+      window.location.href = 'TrangChu.html';
+    });
+  </script>
+</body>
 </html>
