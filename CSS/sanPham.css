@@ -473,3 +473,90 @@ footer a:hover {
       gap: 8px;
   }
 }
+
+   /* Thêm chút CSS cho modal */
+   .product-modal {
+    position: fixed; top:0; left:0;
+    width:100%; height:100%;
+    background:rgba(0,0,0,0.6);
+    display:none;
+    align-items:center; justify-content:center;
+    z-index:1000;
+  }
+  .modal-content {
+    background:#fff; padding:20px; border-radius:6px;
+    max-width:400px; width:90%; position:relative;
+    text-align:left;
+  }
+  .modal-close {
+    position:absolute; right:10px; top:10px;
+    font-size:1.2rem; cursor:pointer;
+  }
+  .modal-content img {
+    max-width:100%; height:auto; margin-bottom:10px;
+  }
+  .modal-content p {
+    margin:5px 0;
+  }
+  .modal-content button {
+    margin-top:10px;
+  }
+
+  /* Nút Thêm vào giỏ trong modal */
+#product-modal .modal-content #modal-add {
+  display: block;
+  width: 100%;
+  padding: 10px 0;
+  margin-top: 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  background-color: #28a745;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.2s ease;
+}
+
+#product-modal .modal-content #modal-add:hover {
+  background-color: #218838;
+}
+
+/* Style cho footer sitemap link */
+footer {
+  position: relative;
+}
+
+footer .sitemap {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+}
+
+footer .sitemap a {
+  display: inline-block;
+  padding: 6px 12px;
+  background-color: #28a745;
+  color: #fff;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+footer .sitemap a:hover {
+  background-color: #218838;
+  transform: translateY(-2px);
+}
+
+/* Responsive: chuyển sitemap xuống dưới trên màn hình nhỏ */
+@media (max-width: 768px) {
+  footer .sitemap {
+    position: static;
+    transform: none;
+    margin-top: 15px;
+    text-align: center;
+  }
+}

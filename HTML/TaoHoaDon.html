@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Hóa đơn - MQ Medical</title>
-
   <!-- CSS chung -->
   <link rel="stylesheet" href="/CSS/bootstrap.css" />
   <link rel="stylesheet" href="/CSS/trangChu.css" />
@@ -88,12 +87,14 @@
   <!-- Footer -->
   <footer class="bg-dark text-white text-center py-4">
     &copy; 2025 MQ Medical. All rights reserved.
+    <div class="sitemap"><a href="/HTML/SiteMap.html">SiteMap</a></div>
   </footer>
 
   <!-- jsPDF Core, AutoTable & Fonts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.vfs_fonts.min.js"></script>
+  <script src="/JS/auth.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       // 1. Kiểm tra & hiển thị user
@@ -114,7 +115,7 @@
       const cart = JSON.parse(localStorage.getItem('cart') || '[]');
       const tbody = document.getElementById('invoiceTable');
       let total = 0;
-      cart.forEach((p,i) => {
+      cart.forEach((p, i) => {
         const qty = p.quantity || 1;
         const itemTotal = qty * Number(p.price);
         total += itemTotal;
@@ -133,44 +134,43 @@
 
       // 3. Tạo PDF khi click
       document.getElementById('btnDownload').addEventListener('click', () => {
-  const { jsPDF } = window.jspdf;
-  const doc = new jsPDF();
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
 
-  doc.setFont('DejaVu', 'normal');
-  doc.setFontSize(16);
-  doc.text('HÓA ĐƠN MQ MEDICAL', 14, 20);
-  doc.setFontSize(12);
+        // Chọn font Unicode đã có trong vfs_fonts
+        doc.setFont('Helvetica');
+        doc.setFontSize(16);
+        doc.text('HÓA ĐƠN MQ MEDICAL', 14, 20);
+        doc.setFontSize(12);
 
-  const tableData = cart.map((p,i) => {
-    const qty = p.quantity || 1;
-    const it = qty * Number(p.price);
-    return [
-      i+1,
-      p.name,
-      qty,
-      Number(p.price).toLocaleString(),
-      it.toLocaleString()
-    ];
-  });
+        // Dữ liệu bảng
+        const tableData = cart.map((p, i) => {
+          const qty = p.quantity || 1;
+          const it = qty * Number(p.price);
+          return [
+            i + 1,
+            p.name,
+            qty,
+            Number(p.price).toLocaleString(),
+            it.toLocaleString()
+          ];
+        });
 
-  doc.autoTable({
-  startY: 30,
-  head: [['STT', 'Sản phẩm', 'SL', 'Đơn giá (đ)', 'Thành tiền (đ)']],
-  body: [
-    ['1', 'Găng tay khám', '1', '20,000', '20,000']
-  ],
-  styles: {
-    font: 'DejaVu', // sử dụng font Unicode
-    fontStyle: 'normal'
-  }
-  });
+        doc.autoTable({
+          startY: 30,
+          head: [['STT','Sản phẩm','SL','Đơn giá (đ)','Thành tiền (đ)']],
+          body: tableData,
+          styles: { font: 'Helvetica' }
+        });
 
-  const finalY = doc.autoTable.previous.finalY + 10;
-  doc.text(`Tổng cộng: ${total.toLocaleString()} đ`, 14, finalY);
-  doc.save('HoaDon.pdf');
-  localStorage.removeItem('cart');
+        const finalY = doc.autoTable.previous.finalY + 10;
+        doc.text(`Tổng cộng: ${total.toLocaleString()} đ`, 14, finalY);
+
+        doc.save('HoaDon.pdf');
+        localStorage.removeItem('cart');
       });
     });
   </script>
+  <script src="/JS/auth.js"></script>
 </body>
 </html>

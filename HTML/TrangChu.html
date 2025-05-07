@@ -53,16 +53,16 @@
                     <a href="#">Vật liệu tiêu hao dùng 1 lần</a>
                     <ul class="dropdown_1lan">
                         <li><a href="#">Nhựa & cao su</a></li>
-                        <li><a href="#">Vật liệu cầm máu</a></li>
-                        <li><a href="#">Kim loại</a></li>
-                        <li><a href="#">Giấy</a></li>
-                        <li><a href="#">Phục vụ xét nghiệm</a></li>
+                        <li><a href="/HTML/VatLieuCamMau.html">Vật liệu cầm máu</a></li>
+                        <li><a href="/HTML/KimLoai.html">Kim loại</a></li>
+                        <li><a href="/HTML/Giay.html">Giấy</a></li>
+                        <li><a href="/HTML/PhuVuXetNghiem.html">Phục vụ xét nghiệm</a></li>
                         <li><a href="#">Nội thất y tế</a></li>
                         <li><a href="#">Inox</a></li>
                     </ul>
                 </li>
-                <li><a href="#">Dụng cụ thăm khám</a></li>
-                <li><a href="#">Dụng cụ phẫu thuật</a></li>
+                <li><a href="/HTML/DungCuThamKham.html">Dụng cụ thăm khám</a></li>
+                <li><a href="/HTML/DungCuPhauThuat.html">Dụng cụ phẫu thuật</a></li>
                 <li><a href="#">Dụng cụ nội soi</a></li>
             </ul>
         </div>
@@ -127,6 +127,29 @@
             <p>Băng cuộn mềm mại, thấm hút tốt.</p>
             <a href="#" class="btn">Chi tiết</a>
           </div>
+
+          <div class="product-item"
+          data-title="Máy Xét Nghiệm Nhanh"
+          data-material="Kim loại, Nhựa y tế"
+          data-manufacturer="BioQuick Labs"
+          data-desc="Thiết bị xét nghiệm nhanh cho kết quả trong 5 phút.">
+       <img src="../IMG/mayxetnghiemnhanh.png" alt="Máy Xét Nghiệm Nhanh">
+       <h3>Máy Xét Nghiệm Nhanh</h3>
+       <p>Thiết bị xét nghiệm nhanh cho kết quả trong 5 phút.</p>
+       <a href="#" class="btn">Chi tiết</a>
+     </div>
+
+     <div class="product-item"
+           data-title="Nhiệt Kế Hồng Ngoại"
+           data-material="Nhựa ABS"
+           data-manufacturer="InfraMed Corp."
+           data-desc="Nhiệt kế hồng ngoại đo trán không tiếp xúc, chính xác cao.">
+        <img src="../IMG/nhietkehongngoai.png" alt="Nhiệt Kế Hồng Ngoại">
+        <h3>Nhiệt Kế Hồng Ngoại</h3>
+        <p>Nhiệt kế hồng ngoại đo trán không tiếp xúc, chính xác cao.</p>
+        <a href="#" class="btn">Chi tiết</a>
+      </div>
+
         </div>
       </div>
     </section>
@@ -154,6 +177,7 @@
         <div class="container">
             <p>&copy; 2025 Vật Tư Y Tế MQ. All rights reserved.</p>
         </div>
+        <div class="sitemap"><a href="/HTML/SiteMap.html">SiteMap</a></div>
     </footer>
 
     <!-- Scripts -->
@@ -256,7 +280,7 @@
       // Gọi hàm khi load
       document.addEventListener('DOMContentLoaded', renderOtherProducts);
     </script>
-    
+    <script src="/JS/auth.js"></script>
 </body>
 
 </html>

@@ -343,3 +343,41 @@ footer {
         padding: 0 15px;
     }
 }
+
+/* Style cho footer sitemap link */
+footer {
+    position: relative;
+  }
+  
+  footer .sitemap {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+  }
+  
+  footer .sitemap a {
+    display: inline-block;
+    padding: 6px 12px;
+    background-color: #28a745;
+    color: #fff;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  footer .sitemap a:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+  }
+  
+  /* Responsive: chuyển sitemap xuống dưới trên màn hình nhỏ */
+  @media (max-width: 768px) {
+    footer .sitemap {
+      position: static;
+      transform: none;
+      margin-top: 15px;
+      text-align: center;
+    }
+  }
